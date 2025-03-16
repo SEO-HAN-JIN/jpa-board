@@ -18,3 +18,15 @@
 - **Database**: H2
 - **Build Tool**: Gradle
 - **Others**: Lombok
+
+## 프로젝트 진행 중 학습한 내용
+### 1. 기본생성자 (`@NoArgsConstructor`)
+- JPA 엔티티 클래스는 기본 생성자가 필요하며, 외부에서 직접 호출하지 못하도록 `protected`로 막는게 적절하다.
+- Lombok의 `@NoArgsConstructor(access=AccessLevel.PROTECTED)`를 사용하면 강제할 수 있다.
+
+### 2. JPA Auditing(공통 필드 자동화)
+- `@MappedSuperclass`: 공통 필드를 가지는 상위 엔티티 설정
+- `@EntityListeners(AuditingEntityListener.class)`, `@EnableJpaAuditing`: JPA Auditing 활성화
+  - `@CreatedDate`, `@LastModifiedDate`, `@CreatedBy`, `@LastModifiedBy` 같은 자동 필드 관리 기능 사용 가능
+- `@CreatedBy`, `@LastModifiedBy`는 `AuditorAware`가 제공한 값이 필드에 자동적으로 할당된다.
+
